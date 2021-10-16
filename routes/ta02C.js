@@ -13,7 +13,8 @@ router.get("/", (req, res, next) => {
     users: userList,
     error: errorMessage,
     activeTA03: true, // For HBS
-    contentCSS: true, // For HBS
+    contentCSS: true, // For HBS,
+    isLoggedIn: req.session.loggedIn,
   });
 });
 
@@ -37,7 +38,6 @@ router.post("/removeUser", (req, res, next) => {
   } else {
     errorMessage = "User not found";
   }
-  console.log(userList);
   res.redirect("/ta02");
 });
 module.exports = router;

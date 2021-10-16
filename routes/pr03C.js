@@ -14,6 +14,7 @@ router.get("/", (req, res, next) => {
         title: "Prove 03",
         path: "/pr03", // For pug, EJS
         itemList: itemsData,
+        isLoggedIn: req.session.loggedIn,
       });
     }
   });

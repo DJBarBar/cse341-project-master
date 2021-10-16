@@ -12,15 +12,19 @@
   </div>
 </div>
 <div class="container">
+  <% if(isLoggedIn){ %>
     <form action="/admin/products/addProduct" method=get>
+      <input type="hidden" name="_csrf" value="<%= csrfToken%>">
         <button type="submit">Add Product</button>
      </form>
+     <%}%>
     <ul class="products">
       <% for(i = 0; i < itemList.length; i++){ %>
         <li class="item">
                 <h2><%= itemList[i].title %> </h2>             
                 <image src= "<%= itemList[i].imageURL %>"></image>
                 <form action="/admin/products/viewProduct" method=get>
+                  <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                    <button type="submit">View Details</button>
                     <input type="hidden" name="productID" value="<%= itemList[i]._id %>">
                 </form>
