@@ -12,6 +12,7 @@
       </div>
     </div>
     <div class="container">
+      <% if (itemList.length > 0) { %>
       <ul class="products">
         <% for(i = 0; i < itemList.length; i++){ %>
         <li class="item">
@@ -29,8 +30,8 @@
             <input type="hidden" name="_csrf" value="<%= csrfToken%>" />
             <input
               type="hidden"
-              name="productID"
-              value="<%= itemList[i]._id %>"
+              name="deleteID"
+              value="<%= itemList[i].productID._id %>"
             />
             <input
               type="number"
@@ -43,6 +44,9 @@
         </li>
         <% } %>
       </ul>
+      <% } else { %>
+      <h2>No items found!</h2>
+      <% } %>
     </div>
   </body>
 </html>

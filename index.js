@@ -56,6 +56,7 @@ const shopRoutes = require("./routes/shopC");
 const loginRoutes = require("./routes/loginC");
 const logoutRoutes = require("./routes/logoutC");
 const signUpRoutes = require("./routes/signupC");
+const profileRoutes = require("./routes/profileC");
 //Teams
 const ta01Routes = require("./routes/ta01C");
 const ta02Routes = require("./routes/ta02C");
@@ -89,7 +90,7 @@ app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
   }
-  console.log(req.session.user._id);
+  //console.log(req.session.user._id);
   User.findById(req.session.user._id)
     .then((user) => {
       req.user = user;
@@ -114,6 +115,7 @@ app
   .use("/login", loginRoutes)
   .use("/logout", logoutRoutes)
   .use("/signup", signUpRoutes)
+  .use("/profile", profileRoutes)
   //Team routes
   .use("/ta01", ta01Routes)
   .use("/ta02", ta02Routes)
@@ -123,7 +125,7 @@ app
   .get("/", (req, res, next) => {
     // This is the primary index, always handled last.
     res.render("pages/index", {
-      title: "Welcome to my CSE341 repo",
+      title: "Welcome to my store!",
       path: "/",
       isLoggedIn: req.session.loggedIn,
     });
@@ -134,6 +136,13 @@ app
       title: "404 - Page Not Found",
       path: req.url,
       isLoggedIn: req.session.loggedIn,
+    });
+  })
+  .use((err, req, res, next) => {
+    console.log(err);
+    res.render("pages/500", {
+      title: "500 - Server Error",
+      path: req.url,
     });
   });
 

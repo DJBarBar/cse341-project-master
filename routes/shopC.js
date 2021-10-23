@@ -23,12 +23,14 @@ router.get("/cart", isAuth, (req, res, next) => {
     .populate("cart.items.productID")
     .execPopulate()
     .then((user) => {
+      //       console.log(user.cart.items);
+      const products = user.cart.items;
+
       res.render("pages/shop/cart", {
         pageTitle: "Cart",
         title: "Cart",
         path: "/cart",
-        itemList: user.cart.items,
-        isLoggedIn: req.session.loggedIn,
+        itemList: products,
       });
     })
     .catch((err) => {
@@ -42,13 +44,13 @@ router.post("/cart", isAuth, (req, res, next) => {
       return req.user.addToCart(product, req.body.amount);
     })
     .then((result) => {
-      res.redirect("/shop/cart");
+      res.redirect("/shop");
     });
 });
 
 router.post("/cartDelete", isAuth, (req, res, next) => {
   req.user
-    .deleteFromCart(req.body.productID, req.body.amount)
+    .deleteFromCart(req.body.deleteID, req.body.amount)
     .then((result) => {
       res.redirect("/shop/cart");
     })

@@ -9,20 +9,19 @@ router.get("/", isAuth, (req, res, next) => {
     pageTitle: "Admin Main",
     title: "Prove 04",
     path: "/main",
-    editing: false,
-    isLoggedIn: req.session.loggedIn,
   });
 });
 
 router.get("/products", isAuth, (req, res, next) => {
+  const user = req.user;
+
   Product.find().then((products) => {
     res.render("pages/admin/products", {
       itemList: products,
       pageTitle: "Admin Products",
-      title: "Prove 04",
+      title: "Your Products",
       path: "/products",
-      editing: false,
-      isLoggedIn: req.session.loggedIn,
+      user: user,
     });
   });
 });
@@ -35,8 +34,6 @@ router.get("/products/viewProduct", isAuth, (req, res, next) => {
       pageTitle: "View Product",
       title: "Prove 04",
       path: "/viewProduct",
-      editing: false,
-      isLoggedIn: req.session.loggedIn,
     });
   });
 });
@@ -50,7 +47,6 @@ router.get("/products/editProduct", isAuth, (req, res, next) => {
       title: "Prove 04",
       path: "/editProduct",
       editing: true,
-      isLoggedIn: req.session.loggedIn,
     });
   });
 });
@@ -83,7 +79,6 @@ router.get("/products/addProduct", isAuth, (req, res, next) => {
     title: "Prove 04",
     path: "/addProduct",
     editing: false,
-    isLoggedIn: req.session.loggedIn,
   });
 });
 
