@@ -26,7 +26,7 @@ const flash = require("connect-flash");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
 const corsOptions = {
-  origin: "https://cse341-project-2021.herokuapp.com/",
+  origin: "https://cse341-project-master.herokuapp.com/",
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
@@ -43,13 +43,14 @@ const options = {
 
 const MONGODB_URL =
   process.env.MONGODB_URL ||
-  "mongodb+srv://user1:sXdsyxvIlOJwspvK@cluster0.bb1pz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://Dragoncat99:Echomoon11@cluster0.ma3ou.mongodb.net/shop?retryWrites=true&w=majority&authSource=admin";
 
 // Route setup. You can implement more in the future!
 //Proves
 const pr01Routes = require("./routes/pr01C");
 const pr02Routes = require("./routes/pr02C");
 const pr03Routes = require("./routes/pr03C");
+const pr08Routes = require("./routes/pr08C");
 //Proper
 const adminRoutes = require("./routes/adminC");
 const shopRoutes = require("./routes/shopC");
@@ -109,6 +110,7 @@ app
   .use("/pr01", pr01Routes)
   .use("/pr02", pr02Routes)
   .use("/pr03", pr03Routes)
+  .use("/pr08", pr08Routes)
   //Proper routes
   .use("/admin", adminRoutes)
   .use("/shop", shopRoutes)
