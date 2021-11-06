@@ -26,7 +26,7 @@ const flash = require("connect-flash");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
 const corsOptions = {
-  origin: "https://cse341-project-master.herokuapp.com/",
+  origin: "https://cse341-project-2021.herokuapp.com/",
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
@@ -43,7 +43,7 @@ const options = {
 
 const MONGODB_URL =
   process.env.MONGODB_URL ||
-  "mongodb+srv://Dragoncat99:Echomoon11@cluster0.ma3ou.mongodb.net/shop?retryWrites=true&w=majority&authSource=admin";
+  "mongodb+srv://user1:sXdsyxvIlOJwspvK@cluster0.bb1pz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 // Route setup. You can implement more in the future!
 //Proves
