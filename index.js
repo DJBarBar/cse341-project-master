@@ -51,6 +51,7 @@ const pr01Routes = require("./routes/pr01C");
 const pr02Routes = require("./routes/pr02C");
 const pr03Routes = require("./routes/pr03C");
 const pr08Routes = require("./routes/pr08C");
+const pr09Routes = require("./routes/pr09C");
 //Proper
 const adminRoutes = require("./routes/adminC");
 const shopRoutes = require("./routes/shopC");
@@ -75,6 +76,7 @@ app.set("views", path.join(__dirname, "views")).set("view engine", "ejs");
 app
   .use(express.static(path.join(__dirname, "public")))
   .use(bodyParser.urlencoded({ extended: false })) // For parsing the body of a POST
+  .use(bodyParser.json())
   .use(
     session({
       secret: "UwU",
@@ -111,6 +113,7 @@ app
   .use("/pr02", pr02Routes)
   .use("/pr03", pr03Routes)
   .use("/pr08", pr08Routes)
+  .use("/pr09", pr09Routes)
   //Proper routes
   .use("/admin", adminRoutes)
   .use("/shop", shopRoutes)
