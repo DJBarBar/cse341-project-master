@@ -13,7 +13,6 @@ router.post("/post", (req, res, next) => {
   const content = req.body.content;
 
   res.status(201).json({
-    title: "Prove 09",
     path: "/pr09",
     post: {
       id: new Date().toISOString(),
